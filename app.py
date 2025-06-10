@@ -2,26 +2,24 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-# Encabezado
-st.header("Cuadro de mandos de análisis de anuncios de coches usados")
-
-# Leer los datos
+# Leer los datos del CSV
 car_data = pd.read_csv('vehicles_us.csv')
 
-# Botón para histograma
-hist_button = st.button('Construir histograma')
+# Encabezado de la aplicación
+st.header('Análisis de vehículos en venta')
 
-if hist_button:
-    st.write(
-        'Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
-    fig = px.histogram(car_data, x="odometer")
+# MODIFICADO: Reemplazo del botón por una casilla de verificación
+build_histogram = st.checkbox('Construir histograma')
+
+if build_histogram:
+    st.write('Creación de un histograma para el odómetro')
+    fig = px.histogram(car_data, x='odometer')
     st.plotly_chart(fig, use_container_width=True)
 
-# Botón para gráfico de dispersión
-scatter_button = st.button('Construir gráfico de dispersión')
+# MODIFICADO: Nueva casilla de verificación para el gráfico de dispersión
+build_scatter = st.checkbox('Construir gráfico de dispersión')
 
-if scatter_button:
-    st.write('Creación de un gráfico de dispersión: precio vs kilometraje')
-    fig2 = px.scatter(car_data, x="odometer", y="4price",
-                      title="Precio vs Kilometraje")
-    st.plotly_chart(fig2, use_container_width=True)
+if build_scatter:
+    st.write('Creación de un gráfico de dispersión: precio vs odómetro')
+    fig_scatter = px.scatter(car_data, x='odometer', y='4price')
+    st.plotly_chart(fig_scatter, use_container_width=True)
