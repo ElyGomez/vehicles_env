@@ -13,7 +13,7 @@ st.header('Análisis de Vehículos en Venta')
 # =============================
 st.subheader('Vista previa del conjunto de datos')
 st.write('A continuación se muestra una tabla con los primeros registros del dataset:')
-st.dataframe(car_data)
+st.dataframe(car_data.head())
 
 # =============================
 # Sección 2: Gráfica interactiva de barras por tipo
